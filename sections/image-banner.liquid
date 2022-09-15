@@ -1,0 +1,64 @@
+
+
+
+
+<div class="masthead">
+  <div class="container">
+      <img class="mobile-image" src="{{section.settings.mobile_image | image_url: width: 2000 }}" alt="{{section.settings.label}}">
+      <img class="desktop-image" src="{{section.settings.desktop_image | image_url: width: 2000 }}" alt="{{section.settings.label}}">
+
+      {% for block in section.blocks %}
+        <div class="banner-content" {{block.shopify_attributes}}>
+            <h1>{{block.settings.heading}}</h1>
+            <h4>{{block.settings.title}}</h4>
+            {{block.settings.button}}
+        </div>
+      {% endfor %}
+  </div>
+</div>
+
+
+ {% schema %}
+{
+  "name": "t:sections.image-banner.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+      {
+        "type": "image_picker",
+        "id": "desktop_image",
+        "label": "t:sections.image-banner.settings.image.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "t:sections.image-banner.settings.image_2.label"
+      }
+  ],
+  "blocks": [
+      {
+        "name": "banner_content",
+        "type": "content",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Welcome to our store",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "default": "Welcome to our store",
+            "label": "details"
+          },
+          {
+            "type": "richtext",
+            "id": "button",
+            "label": "button"
+          }
+        ]
+      }
+    ]
+}
+{% endschema %} 

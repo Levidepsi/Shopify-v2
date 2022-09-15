@@ -1,0 +1,107 @@
+<<<<<<< HEAD
+<style>
+  .container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+</style>
+
+<div class="container">
+  <h1>{{section.settings.title}}</h1>
+  {{section.settings.content}}
+</div>
+
+
+{% capture all_prods %}
+    <!-- {% for all_products in collection.products %} -->
+          {% render 'product-list', product: all_products %}
+    <!-- {% endfor %} -->
+{% endcapture %} 
+
+{{all_prods}}
+
+
+
+{% schema %}
+
+{
+  "name": "About Us",
+  "tag": "section",
+  "class": "about-us",
+  "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Logo Title"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Logo Title"
+      }
+   
+  ],
+  "presets": [
+   {
+     "category": "Text",
+     "name": "about-us content",
+     "settings": {}
+   }
+ ]
+
+}
+
+
+{% endschema %}
+
+=======
+<style>
+  .container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+</style>
+
+<div class="container">
+  <h1>{{section.settings.title}}</h1>
+  {{section.settings.content}}
+</div>
+
+
+
+
+{% schema %}
+
+{
+  "name": "About Us",
+  "tag": "section",
+  "class": "about-us",
+  "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Logo Title"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Logo Title"
+      }
+   
+  ],
+  "presets": [
+   {
+     "category": "Text",
+     "name": "about-us content",
+     "settings": {}
+   }
+ ]
+
+}
+
+
+{% endschema %}
+
+>>>>>>> 741c625fc45c8a5516a32e8249740a8c17f83649

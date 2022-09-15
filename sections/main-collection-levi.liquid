@@ -1,0 +1,38 @@
+<<<<<<< HEAD
+
+product count: {{collection.all_products_count}}<br/>
+
+{% capture all_prods %}
+     {% paginate collection.products by 5 %}
+    {% for all_products in collection.products %}
+          {% render 'product-list', product: all_products %}
+    {% endfor %}
+
+    {% endpaginate %} 
+{% endcapture %} 
+
+{{all_prods}}
+
+<script>
+  let colleection = {{ collection.products | json }};
+  console.log(colleection)
+=======
+
+product count: {{collection.all_products_count}}<br/>
+
+{% capture all_prods %}
+     {% paginate collection.products by 5 %}
+    {% for all_products in collection.products %}
+          {% render 'product-list', product: all_products %}
+        {% endfor %}
+
+    {% endpaginate %} 
+{% endcapture %} 
+
+{{all_prods}}
+
+<script>
+  let colleection = {{ collection.products | json }};
+  console.log(colleection)
+>>>>>>> 741c625fc45c8a5516a32e8249740a8c17f83649
+</script>

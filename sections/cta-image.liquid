@@ -1,0 +1,218 @@
+<<<<<<< HEAD
+
+<style>
+
+  .image-header {width: 50%;}
+  .image-header img {width: 100%;}
+
+.image-box {
+  display: flex;
+      justify-content: space-around;
+    text-align: center;
+}
+.textyt {width: 50%;}
+.textyt a {
+  padding: 9px;
+  background: goldenrod;
+  border: 1px solid goldenrod;
+  border-radius: 9px;
+  text-decoration: none;
+  color: white;
+}
+
+.right .image-box {
+  flex-direction: row-reverse;
+}
+
+</style>
+
+
+
+<div class="container {{section.settings.image_position}}">
+  <div class="image-box ">
+    {% if section.settings.image %}
+    <div class="image-header">
+      <img class="img-banner" src="{{ section.settings.image | img_url: '800x' }}" />
+    </div>
+    {% endif %}
+    <div class="textyt">
+      <h1>{{section.settings.banner_title}}</h1>
+      {{section.settings.sub_title}}
+      {{section.settings.sub_title2}}
+      <a href="#">{{section.settings.button}}</a>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+
+{
+  "name": "Image Banner",
+  "tag": "section",
+  "class": "cta-image",
+  "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image ko"
+      },
+      {
+        "type": "text",
+        "id": "banner_title",
+        "label": "Logo Title"
+    },
+    {
+      "type": "richtext",
+      "id": "sub_title",
+      "label": "Paragraph"
+    },
+    {
+      "type": "richtext",
+      "id": "sub_title2",
+      "label": "Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    }
+  ],
+  "presets": [
+   {
+     "category": "Text",
+     "name": "Half mage half text",
+     "settings": {}
+   }
+ ]
+
+}
+
+
+{% endschema %}
+
+
+=======
+
+<style>
+
+.image-box {
+  display: flex;
+      justify-content: space-around;
+    text-align: center;
+}
+
+.textyt a {
+  padding: 9px;
+  background: goldenrod;
+  border: 1px solid goldenrod;
+  border-radius: 9px;
+  text-decoration: none;
+  color: white;
+}
+
+.right .image-box {
+  flex-direction: row-reverse;
+}
+
+</style>
+
+
+
+<div class="container {{section.settings.image_position}}">
+  <div class="image-box ">
+    {% if section.settings.image %}
+    <div class="image-header">
+      <img class="img-banner" src="{{ section.settings.image | img_url: '800x' }}" />
+    </div>
+    {% endif %}
+    <div class="textyt">
+      <h1>{{section.settings.banner_title}}</h1>
+      {{section.settings.sub_title}}
+      {{section.settings.sub_title2}}
+      <a href="#">{{section.settings.button}}</a>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+
+{
+  "name": "Image Banner",
+  "tag": "section",
+  "class": "cta-image",
+  "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image ko"
+      },
+      {
+        "type": "text",
+        "id": "banner_title",
+        "label": "Logo Title"
+    },
+    {
+      "type": "richtext",
+      "id": "sub_title",
+      "label": "Paragraph"
+    },
+    {
+      "type": "richtext",
+      "id": "sub_title2",
+      "label": "Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    }
+  ],
+  "presets": [
+   {
+     "category": "Text",
+     "name": "Half mage half text",
+     "settings": {}
+   }
+ ]
+
+}
+
+
+{% endschema %}
+
+
+>>>>>>> 741c625fc45c8a5516a32e8249740a8c17f83649

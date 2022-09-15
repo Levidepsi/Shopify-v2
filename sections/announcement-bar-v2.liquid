@@ -1,0 +1,121 @@
+<style>
+  .AnnouncementBar {
+    background: {{section.settings.background}} ;
+    color: {{section.settings.color_ko}} ;
+  }
+
+  .AnnouncementBar__Content {
+    text-align: center;
+    padding: 0px 0;
+    display: flex;
+    justify-content: center;
+    margin: auto
+  }
+
+.Announcement__Title {
+  display: block;
+  align-items: center;
+}
+
+.Announcement__Title .text-link {padding-left: 10px;}
+
+.Announcement__Title .text-link a {
+  color: {{section.settings.link_color}} ;
+  text-decoration: none;
+}
+
+.Announcement__Title .text-link a:hover {
+  color: black;
+}
+
+@media (min-width: 320px) {
+  .AnnouncementBar {
+    display: none;
+
+  }
+
+}
+
+@media (min-width: 1025px) {
+  .AnnouncementBar {display: block !important;}
+} 
+
+
+
+</style>
+
+{% capture announcement_content %}
+  <div class="AnnouncementBar">
+        <div class="AnnouncementBar__Content">
+          <div class="Announcement__Title">
+            <h5 class="text-link">{{ section.settings.message }}</h5> 
+          </div>
+        </div>
+
+  </div>
+{% endcapture %}
+
+    {% if section.settings.show_announcement %}
+
+      {% if template != 'index' %}
+          {% if section.settings.show__all_pages %}
+            
+              {{announcement_content}}
+          {% endif %}
+      {% else %}
+        
+          {{announcement_content}}
+      {% endif %}
+
+  {% endif %}  
+  
+  
+
+{% schema %}
+
+
+{
+    
+  "name": "Announcement",
+  "tag": "section",
+  "class": "announcement-bar-v2",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "message",
+      "label": "Announcement Message"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show__all_pages",
+      "label": "Show in all pages",
+      "default": false,
+      "info": "by default check this to show in all pages"
+    },
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "Backgounder",
+      "default": "#FFF"
+    },
+    {
+      "type": "color",
+      "id": "color_ko",
+      "label": "Body text",
+      "default": "#FFF"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#FFF"
+    }
+  ]
+}
+{% endschema %}

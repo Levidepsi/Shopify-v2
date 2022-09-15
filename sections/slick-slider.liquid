@@ -1,0 +1,615 @@
+<<<<<<< HEAD
+
+<style>
+
+  .slick-arrow {
+    position: absolute;
+    width: 43px;
+    height: 43px;
+    background: none;
+    top: 33%;
+    border: none;
+    color: transparent;
+    font-size: 36px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all .4s ease-in-out;
+    z-index: 99;
+  }
+
+  .slick-prev::before {
+    content: '<';
+    color: black;
+    padding-top: 13px;
+  }
+
+  .slick-next::before {
+    content: '>';
+    color: black;
+    /* display: flex;
+    justify-content: center; */
+    padding-top: 13px;
+  }
+
+  .slick-next {
+    right: -40px;
+  }
+  .slick-prev {
+    left: -40px;
+  }
+
+  .slider {
+    padding: 20px;
+  }
+
+  .slider-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .slick-dots {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slick-dots li{
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .slick-dots li button {
+    background: grey;
+    color: white;
+    border-radius: 20px;;
+  }
+
+
+  .slide img {
+    width: 100%;
+    object-fit: cover;
+    padding: 0 10px;
+    height: 100%;
+    position: relative;
+    /* z-index: -1; */
+  }
+
+  .slider.false {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .slider.true {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+
+</style>
+
+  
+
+
+<div class="slider {{section.settings.show_fullscreen}}">
+  <div class="slider-js {{section.settings.show_arrow}}">
+
+    {% render 'card-collection' %}
+    
+    <!-- {% for block in section.blocks %}
+
+          <div class="slide" {{ block.shopify_attributes }}>
+
+              {% if block.settings.image %}
+
+               {{ block.settings.image | image_url: width: 400 | image_tag }}
+
+              {% else %}
+
+               {{ 'placeholder.jpg' | asset_url | img_tag: 'Logo' }}
+
+              {% endif %}
+
+               <div class="slider-content">
+                 <h5  >{{ block.settings.subheading }}</h5>
+               </div>
+          </div>
+    {% endfor %} -->
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "tag": "section",
+  "class": "slick-slider",
+  "settings": [
+    {
+     "type": "checkbox",
+      "id": "show_fullscreen",
+      "label": "Show full-screen images",
+      "info": "If enabled, images will be resized to fit the entire screen.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show  arrow",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto rotate between slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "cycle_speed",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button text",
+      "default": "#363636"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 12
+    }
+  ],
+  "blocks": [
+     {
+       "name": "Slide",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         },
+         {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "750 x 1100px .jpg recommended. If none is set, desktop image will be cropped."
+        },
+        {
+          "type": "checkbox",
+          "id": "apply_overlay",
+          "label": "Apply overlay on image",
+          "info": "This can improve text visibility.",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content position",
+          "options": [
+            {
+              "value": "middleLeft",
+              "label": "Middle left"
+            },
+            {
+              "value": "middleCenter",
+              "label": "Middle center"
+            },
+            {
+              "value": "middleRight",
+              "label": "Middle right"
+            },
+            {
+              "value": "bottomLeft",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottomCenter",
+              "label": "Bottom center"
+            },
+            {
+              "value": "bottomRight",
+              "label": "Bottom right"
+            }
+          ],
+          "default": "bottomLeft"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Sub-heading",
+          "default": "Slide title"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Tell your story"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text",
+          "default": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+        },
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
+          "type": "text",
+          "id": "button_1_text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "text",
+          "id": "button_2_text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "Link"
+        }
+       ]
+     }
+   ],
+   "presets": [
+   {
+     "category": "Slider",
+     "name": "sliders",
+     "settings": {}
+   }
+ ]
+}
+{% endschema %}
+
+<script>
+$(document).ready(function () {
+     $('.slider-js').slick({
+        infinite: true,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        arrows: {{section.settings.show_arrow}},
+        autoplay: {{section.settings.autoplay}},
+        autoplaySpeed: {{section.settings.cycle_speed}}000,
+    });
+  });
+</script>
+
+
+=======
+
+<style>
+
+  .slick-arrow {
+    position: absolute;
+    width: 43px;
+    height: 43px;
+    background: none;
+    top: 33%;
+    border: none;
+    color: transparent;
+    font-size: 36px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all .4s ease-in-out;
+    z-index: 99;
+  }
+
+  .slick-prev::before {
+    content: '<';
+    color: black;
+    padding-top: 13px;
+  }
+
+  .slick-next::before {
+    content: '>';
+    color: black;
+    /* display: flex;
+    justify-content: center; */
+    padding-top: 13px;
+  }
+
+  .slick-next {
+    right: -40px;
+  }
+  .slick-prev {
+    left: -40px;
+  }
+
+  .slider {
+    padding: 20px;
+  }
+
+  .slider-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .slick-dots {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slick-dots li{
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .slick-dots li button {
+    background: grey;
+    color: white;
+    border-radius: 20px;;
+  }
+
+
+  .slide img {
+    width: 100%;
+    object-fit: cover;
+    padding: 0 10px;
+    height: 100%;
+    position: relative;
+    /* z-index: -1; */
+  }
+
+  .slider.false {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .slider.true {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+
+</style>
+
+<div class="slider {{section.settings.show_fullscreen}}">
+  <div class="slider-js {{section.settings.show_arrow}}">
+    
+    {% for block in section.blocks %}
+
+          <div class="slide" {{ block.shopify_attributes }}>
+
+              {% if block.settings.image %}
+
+               {{ block.settings.image | image_url: width: 400 | image_tag }}
+
+              {% else %}
+
+               {{ 'placeholder.jpg' | asset_url | img_tag: 'Logo' }}
+
+              {% endif %}
+
+               <div class="slider-content">
+                 <h5  >{{ block.settings.subheading }}</h5>
+               </div>
+          </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "tag": "section",
+  "class": "slick-slider",
+  "settings": [
+    {
+     "type": "checkbox",
+      "id": "show_fullscreen",
+      "label": "Show full-screen images",
+      "info": "If enabled, images will be resized to fit the entire screen.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show  arrow",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto rotate between slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "cycle_speed",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button text",
+      "default": "#363636"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+     {
+       "name": "Slide",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         },
+         {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "750 x 1100px .jpg recommended. If none is set, desktop image will be cropped."
+        },
+        {
+          "type": "checkbox",
+          "id": "apply_overlay",
+          "label": "Apply overlay on image",
+          "info": "This can improve text visibility.",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content position",
+          "options": [
+            {
+              "value": "middleLeft",
+              "label": "Middle left"
+            },
+            {
+              "value": "middleCenter",
+              "label": "Middle center"
+            },
+            {
+              "value": "middleRight",
+              "label": "Middle right"
+            },
+            {
+              "value": "bottomLeft",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottomCenter",
+              "label": "Bottom center"
+            },
+            {
+              "value": "bottomRight",
+              "label": "Bottom right"
+            }
+          ],
+          "default": "bottomLeft"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Sub-heading",
+          "default": "Slide title"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Tell your story"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text",
+          "default": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+        },
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
+          "type": "text",
+          "id": "button_1_text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "text",
+          "id": "button_2_text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "Link"
+        }
+       ]
+     }
+   ],
+   "presets": [
+   {
+     "category": "Slider",
+     "name": "sliders",
+     "settings": {}
+   }
+ ]
+}
+{% endschema %}
+
+<script>
+$(document).ready(function () {
+     $('.slider-js').slick({
+        infinite: true,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        arrows: {{section.settings.show_arrow}},
+        autoplay: {{section.settings.autoplay}},
+        autoplaySpeed: {{section.settings.cycle_speed}}000,
+    });
+  });
+</script>
+
+
+>>>>>>> 741c625fc45c8a5516a32e8249740a8c17f83649

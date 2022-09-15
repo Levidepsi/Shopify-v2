@@ -1,0 +1,30 @@
+<<<<<<< HEAD
+{
+  "sections": {
+    "main": {
+      "type": "about-us",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+=======
+{
+  "sections": {
+    "main": {
+      "type": "about-us",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+>>>>>>> 741c625fc45c8a5516a32e8249740a8c17f83649
+}

@@ -1,0 +1,144 @@
+<<<<<<< HEAD
+
+<style>
+  .product {
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .product img {
+    padding: 0px 20px;
+  }
+
+  .product h5, h1, p {margin: 10px 0;}
+
+  .comapre-price {text-decoration: line-through;}
+
+  .prices div {padding: 0 5px;}
+
+  .btn {width: 100%;}
+</style>
+
+
+
+
+        <section class="product-variant" name="id">
+          <div class="product">
+            {% for image in product.images %}
+            <img src="{{ image.src | product_img_url: 'large' }}">
+            {% endfor %}
+            
+            <div class="productt-desc">
+              <h5>{{product.type }}</h5>
+              <h1>{{product.title }}</h1>
+              {{product.description}}
+              <div class="prices" style="display: flex; align-items: center;">
+                <div class="comapre-price">{{product.price | money }} </div> <div class="price">{{product.compare_at_price_min | money}}</div>
+              </div>
+              {% for tag in product.tags %}
+              {{ tag }}
+              {% endfor %}
+
+              {%- form 'product', product, class: 'product-cart' -%}
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                <h4>QUANTITY:</h4>
+                <quantity-input class="quantity">
+                    <button class="quantity__button no-js-hidden" name="minus" type="button">
+                        <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape
+                            }}</span>
+                        {% render 'icon-minus' %}
+                    </button>
+                    <input class="quantity__input" type="number" name="quantity" id="quantity" min="1" value="1">
+                    <button class="quantity__button no-js-hidden" name="plus" type="button">
+                        <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape
+                            }}</span>
+                        {% render 'icon-plus' %}
+                    </button>
+                </quantity-input>
+                {{ form | payment_terms }}
+                <input type="submit" class="btn button" value="add to cart">
+              {%- endform -%}
+                </div>
+            </div>
+        </section>
+
+
+{% schema %}
+{
+ "presets": [
+  {
+    "category": "product",
+    "name":"product"
+  }
+ ]
+}
+{% endschema %}
+=======
+
+<style>
+  .product {
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .product img {
+    padding: 0px 20px;
+  }
+
+  .product h5, h1, p {margin: 10px 0;}
+
+  .comapre-price {text-decoration: line-through;}
+
+  .prices div {padding: 0 5px;}
+
+  .btn {width: 100%;}
+</style>
+
+
+
+
+        <section class="product-variant" name="id">
+          <div class="product">
+            {% for image in product.images %}
+            <img src="{{ image.src | product_img_url: 'large' }}">
+            {% endfor %}
+            
+            <div class="productt-desc">
+              <h5>{{product.type }}</h5>
+              <h1>{{product.title }}</h1>
+              {{product.description}}
+              <div class="prices" style="display: flex; align-items: center;">
+                <div class="comapre-price">{{product.price | money }} </div> <div class="price">{{product.compare_at_price_min | money}}</div>
+              </div>
+              {% for tag in product.tags %}
+              {{ tag }}
+              {% endfor %}
+
+              {%- form 'product', product, class: 'product-cart' -%}
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                <h4>QUANTITY:</h4>
+                <quantity-input class="quantity">
+                    <button class="quantity__button no-js-hidden" name="minus" type="button">
+                        <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape
+                            }}</span>
+                        {% render 'icon-minus' %}
+                    </button>
+                    <input class="quantity__input" type="number" name="quantity" id="quantity" min="1" value="1">
+                    <button class="quantity__button no-js-hidden" name="plus" type="button">
+                        <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape
+                            }}</span>
+                        {% render 'icon-plus' %}
+                    </button>
+                </quantity-input>
+                {{ form | payment_terms }}
+                <input type="submit" class="btn button" value="add to cart">
+              {%- endform -%}
+                </div>
+            </div>
+        </section>
+
+
+
+>>>>>>> 741c625fc45c8a5516a32e8249740a8c17f83649
