@@ -1,5 +1,9 @@
 /* Color custom properties */
+<<<<<<< Updated upstream
 /* Hello world */
+=======
+asda
+>>>>>>> Stashed changes
 :root,
 .color-background-1 {
   --color-foreground: var(--color-base-text);
